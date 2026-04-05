@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ViralTitle</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#ffdad8",
+                        "surface": "#f9f9f9",
+                        "primary-container": "#e9002e",
+                        "surface-container-highest": "#e2e2e2",
+                        "surface-tint": "#bf0024",
+                        "outline-variant": "#e9bcb9",
+                        "surface-variant": "#e2e2e2",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-dim": "#dadada",
+                        "secondary": "#5f5e5e",
+                        "background": "#f9f9f9",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#bb0022",
+                        "on-surface": "#1a1c1c",
+                        "surface-container": "#eeeeee",
+                        "inverse-surface": "#2f3131",
+                        "outline": "#946e6b",
+                        "error": "#ef4444"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .glass-header {
+            background: rgba(249, 249, 249, 0.8);
+            backdrop-filter: blur(20px);
+        }
+
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading .btn-text {
+            display: none;
+        }
+
+        .loading .spinner {
+            display: block;
+        }
+
+        .error-message {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body text-on-background min-h-screen">
+
+    <!-- TopAppBar -->
+    <header
+        class="bg-surface/80 backdrop-blur-md dark:bg-neutral-900/80 shadow-sm dark:shadow-none docked full-width top-0 sticky z-50">
+        <div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto w-full">
+            <div class="flex items-center gap-2">
+                <span
+                    class="text-xl font-black text-neutral-900 dark:text-white font-['Plus_Jakarta_Sans'] tracking-tight">ViralTitle
+                </span>
+            </div>
+            <nav class="hidden md:flex gap-8 items-center">
+                <a class="text-red-700 dark:text-red-500 font-bold font-['Plus_Jakarta_Sans'] transition-colors duration-200"
+                    href="#">Generator</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <div class="h-8 w-8 rounded-full overflow-hidden">
+                    <img alt="User" class="h-full w-full object-cover"
+                        src="https://ui-avatars.com/api/?name=User&background=bb0022&color=fff" />
+                </div>
+            </div>
+        </div>
+        <div class="bg-neutral-100 dark:bg-neutral-800 h-[1px] w-full"></div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-12">
+        <!-- Hero Section -->
+        <section class="max-w-3xl mx-auto text-center mb-16">
+            <h1 class="text-5xl md:text-6xl font-headline font-extrabold tracking-tight text-on-background mb-6">
+                Engineer the <span
+                    class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-container">Perfect
+                    Hook.</span>
+            </h1>
+            <p class="text-lg text-secondary mb-10 max-w-2xl mx-auto leading-relaxed">
+                Transform your raw ideas into high-performance YouTube titles using editorial-grade AI precision.
+            </p>
+
+            <div class="relative group">
+                <div
+                    class="bg-surface-container rounded-xl p-2 flex flex-col md:flex-row items-center gap-2 shadow-sm focus-within:ring-2 focus-within:ring-primary-fixed transition-all">
+                    <input id="topicInput"
+                        class="w-full bg-transparent border-none focus:ring-0 px-4 py-4 text-lg font-medium placeholder:text-neutral-400"
+                        placeholder="Describe your video idea... (e.g. Minimalist workspace setup)" type="text"
+                        autocomplete="off" />
+                    <button id="generateBtn"
+                        class="w-full md:w-auto px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold rounded-lg shadow-md hover:shadow-primary/20 active:scale-95 transition-all flex items-center justify-center gap-2 min-w-[180px]">
+                        <span class="btn-text">Generate Titles</span>
+                        <div class="spinner" id="spinner"></div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Error Container -->
+        <div id="errorContainer" class="error-message hidden"></div>
+
+        <!-- Results Section -->
+        <div id="resultsContainer" class="space-y-8 hidden">
+            <div class="flex items-center justify-between border-b border-surface-container-high pb-4">
+                <h2 class="text-2xl font-headline font-bold text-on-background">Your Generated Results</h2>
+            </div>
+
+            <!-- Dynamic Titles Grid -->
+            <div id="titlesList" class="grid grid-cols-1 gap-4">
+                <!-- Titles injected via script.js -->
+            </div>
+
+            <!-- Regenerate Button -->
+            <div class="flex justify-center pt-8">
+                <button id="regenerateBtn"
+                    class="flex items-center gap-2 px-10 py-4 bg-surface-container-highest text-on-surface font-bold rounded-full hover:bg-surface-dim transition-all active:scale-95 group">
+                    <span
+                        class="material-symbols-outlined group-hover:rotate-180 transition-transform duration-500">refresh</span>
+                    <span>Generate Fresh Ideas</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-surface-container-low mt-20 py-12 px-6">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <span class="text-xl font-black text-neutral-900 font-['Plus_Jakarta_Sans'] tracking-tight">ViralTitle
+                </span>
+            </div>
+            <div class="text-xs text-secondary/60">
+                © 2026 ViralTitle. Cleaned and Simplified.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Attach the logic -->
+    <script src="./script.js"></script>
+</body>
+
+</html>
