@@ -60,6 +60,3 @@ The application will be running live on `http://localhost:3000`.
 - The AI responds with 10 pure JSON titles which the backend safely streams directly back to the frontend.
 - The Vanilla JS frontend utilizes a dynamically attached skeleton structure to render the resulting elements fluidly onto the DOM with Tailwind animations.
 
-## License
-
-MIT License.
