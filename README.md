@@ -1,4 +1,4 @@
-# ViralTitle AI 🚀
+# ViralTitle🚀
 
 A modern, full-stack application designed to generate highly-optimized, high-CTR YouTube video titles using the power of Gemini AI. Built with a premium, minimalist "Digital Curator" design aesthetic.
 
